@@ -259,7 +259,7 @@ const HackathonsPage: React.FC = () => {
           {/* Left Arrow - always enabled, further aside */}
           <button
             aria-label="Swipe Left"
-            className="absolute left-2 sm:left-4 z-20 bg-gray-800 hover:bg-red-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
+            className="absolute left-2 sm:-left-16 z-20 bg-gray-800 hover:bg-red-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
             onClick={handleSwipeLeft}
             style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
           >
@@ -274,7 +274,7 @@ const HackathonsPage: React.FC = () => {
               animate={{ x: 0, opacity: 1, rotate: 0 }}
               exit={{ x: direction === 1 ? -40 : 40, opacity: 0, rotate: -direction * 2 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.15 }}
-              className="w-[75vw] max-w-[260px] mx-auto"
+              className="w-[75vw] max-w-[260px] sm:max-w-md sm:w-[400px] mx-auto"
             >
               <SwipeCard
                 onSwipeLeft={handleSwipeLeft}
@@ -361,7 +361,7 @@ const HackathonsPage: React.FC = () => {
           {/* Right Arrow - always enabled, further aside */}
           <button
             aria-label="Swipe Right"
-            className="absolute right-2 sm:right-4 z-20 bg-gray-800 hover:bg-green-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
+            className="absolute right-2 sm:-right-16 z-20 bg-gray-800 hover:bg-green-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
             onClick={handleSwipeRight}
             style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
           >
