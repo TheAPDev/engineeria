@@ -188,15 +188,16 @@ const InternshipsPage: React.FC = () => {
         {/* Swipe Card with Arrow Buttons */}
         <div className="relative mb-8 flex items-center justify-center">
           {/* Left Arrow */}
-          <button
-            aria-label="Swipe Left"
-            className="absolute -left-20 z-20 bg-gray-800 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2"
-            onClick={handleSwipeLeft}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
+            <button
+              aria-label="Swipe Left"
+              className="absolute left-2 sm:left-4 z-20 bg-gray-800 hover:bg-blue-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
+              onClick={handleSwipeLeft}
+              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-7 sm:h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={currentIndex}
@@ -204,13 +205,13 @@ const InternshipsPage: React.FC = () => {
               animate={{ x: 0, opacity: 1, rotate: 0 }}
               exit={{ x: direction === 1 ? -40 : 40, opacity: 0, rotate: -direction * 2 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.15 }}
-              className="w-full"
+              className="w-[75vw] max-w-[260px] mx-auto"
             >
               <SwipeCard
                 onSwipeLeft={handleSwipeLeft}
                 onSwipeRight={handleSwipeRight}
                 onDoubleTap={handleDoubleTap}
-                className="p-6"
+                className="p-2 sm:p-4"
               >
                 <div className="space-y-4">
                   {/* Like and Priority Buttons */}
@@ -309,15 +310,16 @@ const InternshipsPage: React.FC = () => {
             </motion.div>
           </AnimatePresence>
           {/* Right Arrow */}
-          <button
-            aria-label="Swipe Right"
-            className="absolute -right-20 z-20 bg-gray-800 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2"
-            onClick={handleSwipeRight}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
+            <button
+              aria-label="Swipe Right"
+              className="absolute right-2 sm:right-4 z-20 bg-gray-800 hover:bg-green-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
+              onClick={handleSwipeRight}
+              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-7 sm:h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
         </div>
 
         {/* Instructions */}
@@ -330,12 +332,7 @@ const InternshipsPage: React.FC = () => {
           ♥ Double Tap: Priority Save
         </motion.div>
 
-        {/* Filter Button */}
-        <div className="fixed bottom-6 right-6">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-colors duration-200" title="Filter">
-            <FunnelIcon className="h-6 w-6" />
-          </button>
-        </div>
+        {/* Filter Button removed */}
       </div>
 
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FunnelIcon, CalendarIcon, MapPinIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, MapPinIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline';
 import SwipeCard from '../components/SwipeCard/SwipeCard';
 import EnrollModal from '../components/Modal/EnrollModal';
 import { supabase } from '../supabaseClient';
@@ -238,8 +238,8 @@ const HackathonsPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 flex flex-col items-center py-4 px-2 sm:px-6 sm:py-8">
-      <div className="w-full max-w-lg mx-auto">
+    <div className="min-h-screen bg-gray-950 flex flex-col items-center py-4 px-3 sm:px-6 sm:py-8">
+      <div className="w-full max-w-md mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -255,14 +255,15 @@ const HackathonsPage: React.FC = () => {
         </motion.div>
 
         {/* Swipe Card with Arrow Buttons */}
-        <div className="relative mb-6 sm:mb-8 flex items-center justify-center">
+        <div className="relative mb-6 sm:mb-8 flex items-center justify-center" style={{ minHeight: '340px' }}>
           {/* Left Arrow - always enabled, further aside */}
           <button
             aria-label="Swipe Left"
-            className="absolute -left-6 sm:-left-20 z-20 bg-gray-800 hover:bg-red-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2"
+            className="absolute left-2 sm:left-4 z-20 bg-gray-800 hover:bg-red-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
             onClick={handleSwipeLeft}
+            style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 sm:w-8 sm:h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-7 sm:h-7">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
@@ -273,13 +274,13 @@ const HackathonsPage: React.FC = () => {
               animate={{ x: 0, opacity: 1, rotate: 0 }}
               exit={{ x: direction === 1 ? -40 : 40, opacity: 0, rotate: -direction * 2 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.15 }}
-              className="w-full"
+              className="w-[75vw] max-w-[260px] mx-auto"
             >
               <SwipeCard
                 onSwipeLeft={handleSwipeLeft}
                 onSwipeRight={handleSwipeRight}
                 onDoubleTap={handleDoubleTap}
-                className="p-2 sm:p-6"
+                className="p-4 sm:p-6"
               >
                 <div className="space-y-4">
                   {/* Like and Priority Buttons */}
@@ -360,10 +361,11 @@ const HackathonsPage: React.FC = () => {
           {/* Right Arrow - always enabled, further aside */}
           <button
             aria-label="Swipe Right"
-            className="absolute -right-6 sm:-right-20 z-20 bg-gray-800 hover:bg-green-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2"
+            className="absolute right-2 sm:right-4 z-20 bg-gray-800 hover:bg-green-700 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-200 top-1/2 -translate-y-1/2 flex items-center justify-center"
             onClick={handleSwipeRight}
+            style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 sm:w-8 sm:h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-7 sm:h-7">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
           </button>
@@ -382,11 +384,7 @@ const HackathonsPage: React.FC = () => {
         {/* Progress removed as requested */}
 
         {/* Filter Button */}
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6">
-          <button className="bg-red-600 hover:bg-red-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-colors duration-200" title="Filter">
-            <FunnelIcon className="h-5 w-5 sm:h-6 sm:w-6" />
-          </button>
-        </div>
+        {/* Filter Button removed */}
       </div>
 
       <EnrollModal

@@ -33,6 +33,44 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
+      {/* Desktop Sidebar (always open, left-aligned) */}
+      <div className="hidden lg:flex flex-col w-80 bg-gray-900 border-r border-red-600/20 h-full sticky top-0 z-30">
+        <div className="flex items-center p-6 border-b border-red-600/20">
+          <h2 className="text-2xl font-bold font-['Montserrat'] bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+            Engineeria
+          </h2>
+        </div>
+        <nav className="mt-6 px-4">
+          {allMenuItems.map((item, idx) => {
+            const Icon = item.icon;
+            const isActive = location.pathname === item.path;
+            const isSubMenu = 'parent' in item;
+            const isIndented = 'indent' in item && item.indent;
+            // Use path if available, else fallback to label+idx
+            const key = item.path && item.path.length > 0 ? item.path : `${item.label}-${idx}`;
+            return (
+              <motion.div
+                key={key}
+                whileHover={{ x: 4 }}
+                className={`mb-2 ${isIndented ? 'ml-8' : isSubMenu ? 'ml-4' : ''}`}
+              >
+                <Link
+                  to={item.path}
+                  className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg shadow-red-600/25'
+                      : 'text-gray-300 hover:bg-red-600/10 hover:text-red-400'
+                  }`}
+                >
+                  <Icon className={`h-5 w-5 mr-3 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                  <span className={`font-medium text-lg ${isIndented ? 'text-sm' : ''}`}>{item.label}</span>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </nav>
+      </div>
+      {/* Mobile Sidebar (toggle, left-aligned) */}
       {isOpen && (
         <>
           {/* Backdrop */}
@@ -43,20 +81,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             className="fixed inset-0 bg-black/50 z-40 lg:hidden"
             onClick={onClose}
           />
-          
           {/* Sidebar */}
           <motion.div
             initial={{ x: -300 }}
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             transition={{ type: 'spring', damping: 20, stiffness: 100 }}
-            className="fixed left-0 top-0 h-full w-72 sm:w-80 bg-gray-900 border-r border-red-600/20 z-50 lg:sticky lg:translate-x-0"
+            className="fixed left-0 top-0 h-full w-72 sm:w-80 bg-gray-900 border-r border-red-600/20 z-50 lg:hidden"
           >
             <div className="flex items-center p-4 sm:p-6 border-b border-red-600/20">
-              {/* Hamburger always visible and always closes sidebar */}
               <button
                 onClick={onClose}
-                className="mr-3 sm:mr-4 p-2 rounded-lg text-gray-300 hover:text-red-400 hover:bg-red-600/10 transition-colors duration-200"
+                className="mr-4 p-2 rounded-lg text-gray-300 hover:text-red-400 hover:bg-red-600/10 transition-colors duration-200"
                 title="Close sidebar"
                 aria-label="Close sidebar"
               >
@@ -67,14 +103,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               </h2>
             </div>
             <nav className="mt-4 sm:mt-6 px-2 sm:px-4">
-              {allMenuItems.map((item) => {
+              {allMenuItems.map((item, idx) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.path;
                 const isSubMenu = 'parent' in item;
                 const isIndented = 'indent' in item && item.indent;
+                const key = item.path && item.path.length > 0 ? item.path : `${item.label}-${idx}`;
                 return (
                   <motion.div
-                    key={item.path}
+                    key={key}
                     whileHover={{ x: 4 }}
                     className={`mb-2 ${isIndented ? 'ml-6 sm:ml-8' : isSubMenu ? 'ml-3 sm:ml-4' : ''}`}
                   >
