@@ -140,8 +140,8 @@ const MyOpportunitiesPage: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-950 p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-950 flex flex-col items-center py-4 px-2 sm:px-6 sm:py-8">
+      <div className="w-full max-w-lg mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
